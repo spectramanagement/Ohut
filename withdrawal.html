@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="keywords" content="HTML, CSS">
+<meta name="description" content="..."
+<meta http-equiv="X-UA-Compatible" content="1e=edge" >
+
+   <title> Withdrawal </title>
+   
+<!--<link rel="stylesheet" href="Login.css">-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible"content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+
+</head>
+<body>
+
+      
+    
+
+   
+ <div class="container">
+
+<style>
+
+.bottomNavBox {
+bottom: 0;
+left: 0;
+position: fixed;
+justify-content: center;
+align-items: center;
+width: 100%;
+z-index: 1;
+
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.bottomNav {
+width: 100%;
+height: 80px;
+background-color: #eee;
+justify-content: center;
+align-items: center;
+display: flex;
+z-index: 1;
+}
+
+
+  .bottomNav button {
+background: #eee;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+  .bottomNav button i {
+color: #8B0A0A;
+  font-size: 30px;
+
+}
+button img {
+width: 35px;
+height: auto;
+}
+
+body {
+
+font-family: 'Poppins', sans-serif;
+background-color: #eee;
+height: 100hv;
+width: 100%;
+padding: 0px;
+margin: 0px;
+}
+
+.container {
+width: 100%;
+
+}
+
+.BckBtn {
+padding: 5px;
+margin-left: 80%;
+border-radius: 10px;
+
+margin-right: 5%;
+position: absolute;
+margin-top: 50px;
+
+color: grey;
+font-size: 14px;
+}
+
+.logo img {
+width: 150px;
+height: auto;
+position: relative;
+
+}
+
+input {
+width: 80%;
+height: 40px;
+margin-left: 10%;
+padding: 0;
+margin-bottom: 10px;
+}
+
+::placeholder {
+padding-left: 10px;
+font-size: 14px;
+}
+/*Account Balance*/
+.depositAcct {
+width: 80%;
+height: 100%;
+background-color: white;
+border-radius: 10px;
+margin-left: 10%;
+color: black;
+padding: 0px;
+margin-top: 30px;
+margin-bottom: 100px;
+}
+.depositBox img { 
+width: 90%;
+height: auto;
+margin-left: 5%;
+margin-top: 20px;
+}
+
+ button {
+font-size: 16px;
+background-color:  #e74c3c;
+border-radius: 20px;
+width: 40%;
+margin-left: 30%;
+margin-bottom: 20px;
+margin-top: 10px;
+padding: 10px;
+color: white;
+}
+
+
+button:hover{
+background-color: #333;
+}
+h4 {
+color: red;
+text-align: center;
+padding-top: 20px;
+}
+#balance {
+    font-weight: bold;
+width: 80%;
+margin-left: 10%;
+
+background-color: #032B44;
+border-radius: 10px;
+}
+
+#balance h2 {
+    font-weight: bold;
+font-size: 18px;
+padding: 20px;
+text-align: center;
+color: white;
+}
+
+</style>
+
+
+
+<a href="home.html"><div class="BckBtn">Back</div> </a>
+ 
+
+<div class="logo"><img src="Ohut Logo.png"/></div>
+<!--
+     <section id="balance">
+            <h2>Available Balance: <span id="InterestBln">0</span></h2>
+        </section>
+-->
+<div class="depositAcct">
+<div class="depositAlign">
+        <section id="deposit">
+            <h4>Withdrawal Details</h4>
+<p id="result"></p>
+            <input type="number" id="withdrawAmt" placeholder="Enter amount" required>
+           
+
+ <input type="number" id="withdrawAcct" placeholder="Account Number" required>
+
+ <input type="text" id="withdrawBank" placeholder="Bank" required>
+
+ <input type="text" id="withdrawName" placeholder="Account Name" required>
+
+ <button onclick="withdrawalDetails()">Next</button>
+        </section>
+
+    </main>
+
+</div>
+
+</div>
+
+</div>
+<script>
+
+function withdrawalDetails() {
+  const interestBln = parseFloat(localStorage.getItem('interestBln'));
+  const withdrawAmt = parseFloat(document.getElementById('withdrawAmt').value);
+  const withdrawName = document.getElementById('withdrawName').value;
+  const withdrawBank = document.getElementById('withdrawBank').value;
+  const withdrawAcct = document.getElementById('withdrawAcct').value;
+
+  if (isNaN(withdrawAmt)) {
+    document.getElementById('result').innerText = 'Please enter a valid amount';
+  } else if (withdrawAmt < 50) {
+    document.getElementById('result').innerText = 'Minimum withdrawal amount is 50';
+  } else if (withdrawAmt > interestBln) {
+    window.location.href = 'Unsuccessful.html';
+  } else if (withdrawName === '' || withdrawBank === '' || withdrawAcct === '') {
+    document.getElementById('result').innerText = 'Please fill out all fields';
+  } else {
+    const newInterestBln = interestBln - withdrawAmt;
+    localStorage.setItem('interestBln', newInterestBln); 
+    localStorage.setItem('withdrawAmt', withdrawAmt);
+    localStorage.setItem('withdrawName', withdrawName);
+    localStorage.setItem('withdrawBank', withdrawBank);
+    localStorage.setItem('withdrawAcct', withdrawAcct);
+    document.getElementById('withdrawAmt').value = ''; // Clear the input field
+    window.location.href = 'packageSuccessful';
+  }
+}
+
+</script>
+</body>
+</html>
+
+
+
+

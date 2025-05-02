@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+   
+<input type="number" id="amount" placeholder="Enter amount">
+<button id="withdraw">Withdraw</button>
+<div id="result"></div>
+<div id="deducted-amount"></div>
+<button onclick="window.location.href='page3.html'">Proceed to Page 3</button>
+
+<script>
+  const balance = localStorage.getItem('balance') || 10000;
+  document.getElementById('withdraw').addEventListener('click', () => {
+    const amount = parseFloat(document.getElementById('amount').value);
+    if (amount > balance) {
+      document.getElementById('result').innerText = 'Insufficient funds';
+    } else {
+      const newBalance = balance - amount;
+      localStorage.setItem('balance', newBalance);
+      localStorage.setItem('deductedAmount', amount);
+      document.getElementById('deducted-amount').innerText = `Deducted Amount: ${amount}`;
+      document.getElementById('result').innerText = 'Withdrawal successful';
+    }
+  });
+</script>
+
+</body>
+</html>

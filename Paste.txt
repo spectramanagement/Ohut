@@ -1,0 +1,12 @@
+<div class="investBox1">
+<div class="investBoxGroup">
+<img src="diamond.JPEG"/>
+<h1> Bronze </h1> 
+<p> Get started with our entry-level investment package ||
+500 daily for 60 Times  <br/><b> Capital back: </b>Yes </p>
+
+<button class="investButton" onclick="packageAmount1()"> 2,000 </button>
+
+</div>
+
+</div>

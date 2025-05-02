@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="keywords" content="HTML, CSS">
+<meta name="description" content="..."
+<meta http-equiv="X-UA-Compatible" content="1e=edge" >
+
+   <title> Settings </title>
+   
+<!--<link rel="stylesheet" href="Login.css">-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible"content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+
+</head>
+<body> 
+
+<div class="settingDetails">
+
+<a href="home.html"><div class="BckBtn">Back</div> </a>
+
+<div class="profileDetails">
+<img id="profile-image" src="" alt="Profile Image"/>
+</div>
+
+<input type="file" class="profile" accept="image/*" id="profile-upload">
+
+<button class="saveBtn" onclick="saveValue()">Save</button>
+<div class="settingBox">
+<button id="userNameBtn">Change Username</button>
+<div id="userNameView" style="display: none" >
+<input type="text" id="userName" placeholder="username">
+
+</div> 
+
+<button id="userNameBtn1"> Email/Phone number</button>
+<div id="userNameView1" style="display: none" >
+
+<input type="text" id="mail" placeholder="Email">
+<input type="number" id="number" placeholder="Phone Number">
+
+</div>
+
+
+
+<button id="changePasswordBtn">Change Password</button>
+<div class="password" id="changePassword"style="display: none">
+<input type="password" id="password" placeholder="New Password">
+<input type="password" id="Confirmpassword" placeholder="Confirm Password">
+</div>
+
+<button id="accountDetailsBtn">Link Withdrawal Details</button>
+<div id="accountDetailsView" style="display: none">
+<input type="number" id="AcctNumber" placeholder="Account Number">
+<input type="text" id="AcctBank" placeholder="Bank">
+<input type="tect" id="AcctName" placeholder="Account Name">
+
+</div>
+
+
+
+<a href="2fa.html"><button > Two authentication factor </button> </a> 
+</div>
+</div>
+<script>
+
+
+// Profile Picture
+document.getElementById('profile-upload').addEventListener('change', function() {
+  const file = this.files[0];
+  // You can add code here to upload the file or display it
+});
+
+// Change Username
+document.getElementById('userNameBtn').addEventListener('click', function() {
+  const userNameView = document.getElementById('userNameView');
+  userNameView.style.display = userNameView.style.display === 'block' ? 'none' : 'block';
+});
+
+function saveValue() {
+  const userName = document.getElementById('userName').value;
+  localStorage.setItem('userName', userName);
+  alert('Username saved successfully!');
+}
+
+// Email/Phone Number
+document.getElementById('userNameBtn1').addEventListener('click', function() {
+  const userNameView1 = document.getElementById('userNameView1');
+  userNameView1.style.display = userNameView1.style.display === 'block' ? 'none' : 'block';
+});
+
+document.getElementById('userNameView1').addEventListener('input', function() {
+  const mail = document.getElementById('mail').value;
+  const number = document.getElementById('number').value;
+  localStorage.setItem('mail', mail);
+  localStorage.setItem('number', number);
+});
+
+// Change Password
+document.getElementById('changePasswordBtn').addEventListener('click', function() {
+  const changePassword = document.getElementById('changePassword');
+  changePassword.style.display = changePassword.style.display === 'block' ? 'none' : 'block';
+});
+
+document.getElementById('changePassword').addEventListener('input', function() {
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('Confirmpassword').value;
+  if (password === confirmPassword) {
+    localStorage.setItem('password', password);
+  } else {
+    alert('Passwords do not match!');
+  }
+});
+
+// Account Details
+document.getElementById('accountDetailsBtn').addEventListener('click', function() {
+  const accountDetailsView = document.getElementById('accountDetailsView');
+  accountDetailsView.style.display = accountDetailsView.style.display === 'block' ? 'none' : 'block';
+});
+
+document.getElementById('accountDetailsView').addEventListener('input', function() {
+  const acctNumber = document.getElementById('AcctNumber').value;
+  const acctBank = document.getElementById('AcctBank').value;
+  const acctName = document.getElementById('AcctName').value;
+  localStorage.setItem('acctNumber', acctNumber);
+  localStorage.setItem('acctBank', acctBank);
+  localStorage.setItem('acctName', acctName);
+});
+
+// Load saved values
+window.onload = function() {
+  const userName = localStorage.getItem('userName');
+  const mail = localStorage.getItem('mail');
+  const number = localStorage.getItem('number');
+  const password = localStorage.getItem('password');
+  const acctNumber = localStorage.getItem('acctNumber');
+  const acctBank = localStorage.getItem('acctBank');
+  const acctName = localStorage.getItem('acctName');
+
+  if (userName) {
+    document.getElementById('userName').value = userName;
+  }
+  if (mail) {
+    document.getElementById('mail').value = mail;
+  }
+  if (number) {
+    document.getElementById('number').value = number;
+  }
+  if (password) {
+    document.getElementById('password').value = password;
+    document.getElementById('Confirmpassword').value = password;
+  }
+  if (acctNumber) {
+    document.getElementById('AcctNumber').value = acctNumber;
+  }
+  if (acctBank) {
+    document.getElementById('AcctBank').value = acctBank;
+  }
+  if (acctName) {
+    document.getElementById('AcctName').value = acctName;
+  }
+};
+
+
+document.getElementById('profile-upload').addEventListener('change', function() {
+  const profileImage = document.getElementById('profile-image');
+  if (this.files.length > 0) {
+    const file = this.files[0];
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const imageData = event.target.result;
+      localStorage.setItem('profileImageData', imageData);
+      profileImage.src = imageData;
+      profileImage.classList.add('uploaded');
+    };
+    reader.readAsDataURL(file);
+  } else {
+    localStorage.removeItem('profileImageData');
+    profileImage.src = '';
+    profileImage.classList.remove('uploaded');
+  }
+});
+
+// Load saved image
+const savedImageData = localStorage.getItem('profileImageData');
+if (savedImageData) {
+  const profileImage = document.getElementById('profile-image');
+  profileImage.src = savedImageData;
+  profileImage.classList.add('uploaded');
+}
+
+</script>
+
+<style>
+
+
+body {
+background-color: #333;
+}
+div {
+
+background-color: grey;
+
+}
+.settingDetails {
+
+background-color: #333;
+
+}
+.settingBox {
+width: 80%;
+height: 100%;
+margin-left: 10%;
+background-color: #eee;
+border-radius: 20px;
+padding-bottom: 20px;
+padding-top: 20px;
+
+}
+.saveBtn {
+width: 20%;
+margin-left: 70%;
+border-radius: 20px;
+   color: #fff;
+    border: none;
+   text-align:  center;
+    cursor: pointer;
+background-color:  #e74c3c;
+margin-bottom: 10px;
+}
+
+.profile {
+width: 30%;
+height: 40px;
+margin-left: 37%;
+color: black;
+margin-top: 5px;
+margin-bottom: 0px;
+}
+
+#profile-image {
+  width: 30%;
+height: 100px;
+  transition: all 0.5s ease-in-out;
+border-radius: 50%;
+border: 4px solid grey;
+}
+
+#profile-image.uploaded {
+  width: 200px;
+  height: 200px;
+
+}
+#profile-upload {
+color: transparent;
+
+}
+.profileDetails {
+background-color: transparent;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-top: 0px;
+}
+
+.settingDetails a {
+text-decoration: none;
+color: red;
+}
+
+input {
+width: 70%;
+margin-left: 15%;
+height: 40px;
+margin-bottom: 20px;
+border-radius: 10px;
+font-size: 14px;
+}
+
+p {
+margin-left: 15%;
+}
+button {
+width: 100%;
+border: none;
+padding: 10px;
+font-size: 18px;
+color: black;
+text-align: left;
+}
+
+.BckBtn {
+padding: 5px;
+margin-left: 10%;
+border-radius: 10px;
+font-weight: bold;
+
+position: relative;
+margin-top: 30px;
+background-color: transparent;
+color: white;
+font-size: 16px;
+}
+
+</style>
+</body>
+</html>
+
+
+<!--
+
+ 
+
+.BckBtn {
+padding: 5px;
+margin-left: 80%;
+border-radius: 10px;
+
+margin-right: 5%;
+position: absolute;
+margin-top: 50px;
+
+color: grey;
+font-size: 14px;
+}
+
+
+-->
+

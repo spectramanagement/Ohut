@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="keywords" content="HTML, CSS">
+<meta name="description" content="..."
+<meta http-equiv="X-UA-Compatible" content="1e=edge" >
+
+   <title> Home </title>
+   
+<!--<link rel="stylesheet" href="Login.css">-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible"content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+
+</head>
+<body>
+
+      
+ 
+
+   
+ <div class="container">
+
+<style>
+
+body {
+
+font-family: 'Poppins', sans-serif;
+background-color: #eee;
+height: 100hv;
+width: 100%;
+padding: 0px;
+margin: 0px;
+}
+
+.container {
+width: 100%;
+
+}
+
+.BckBtn {
+padding: 5px;
+margin-left: 80%;
+border-radius: 10px;
+margin-right: 5%;
+position: absolute;
+margin-top: 50px;
+color: grey;
+font-size: 14px;
+}
+
+.logo img {
+width: 150px;
+height: auto;
+position: relative;
+
+}
+
+
+
+
+/*Account Balance*/
+.depositAcct {
+width: 80%;
+height: 100%;
+background-color: white;
+border-radius: 10px;
+margin-left: 10%;
+color: black;
+padding: 0px;
+margin-top: 10px;
+margin-bottom: 100px;
+padding-top: 5px;
+}
+.depositBox img { 
+width: 90%;
+height: auto;
+margin-left: 5%;
+margin-top: 20px;
+}
+.depositAlign {
+padding-left: 0px;
+height: 100%;
+padding-top: 0;
+width: 90%;
+margin-left: 5%;
+}
+
+h4 {
+color: red;
+}
+#balance {
+    font-weight: bold;
+width: 100%;
+font-size: 20px;
+padding: 0px;
+text-align: center;
+}
+
+#balance h2 {
+    font-weight: bold;
+width: 100%;
+font-size: 20px;
+padding: 0px;
+text-align: center;
+}
+
+#receipt-upload {
+    margin-bottom: 1em;
+}
+
+.depositBtn {
+        background-color:  #e74c3c;
+border-radius: 20px;
+    color: #fff;
+    border: none;
+    padding: 1em 2em;
+    cursor: pointer;
+}
+
+.depositBtn:hover {
+background-color: #333;
+}
+
+.widthlDetails {
+width: 100%;
+height: 100%;
+background-color: #eee;
+margin-bottom: 20px;
+border-radius: 10px;
+}
+
+.widthlDetails p {
+text-align: left;
+padding-left: 20px;
+}
+
+h5 {
+padding: 10px;
+font-size: 14px;
+border-bottom: 1px solid grey;
+}
+
+button {
+width: 80px;
+border: 0px;
+font-size: 14px;
+height: 40px;
+text-align: center;
+padding: 0;
+color: black;
+}
+
+button:hover{
+background-color: #333;
+color: white;
+font-weight: bold;
+}
+
+span {
+text-align: center;
+color: black;
+/*margin-left: 30%;*/
+float: right;
+padding-right: 30px ;
+}
+
+
+</style>
+
+
+
+<a href="home.html"><div class="BckBtn">Back</div> </a>
+ 
+
+<div class="logo"><img src="Ohut Logo.png"/></div>
+
+  
+
+<div class="depositAcct">
+<div class="depositAlign">
+
+
+        <section id="transactions">
+            <h4>Withdraw log</h4>
+            <ul id="transactions-list"></ul>
+        </section>
+    </main>
+
+<button id="allDetailsBtn">All</button>
+<button id="widthlDetailsBtn">Pending</button>
+
+<button id="pendingBtn">Complete</button>
+
+<div class="allDetails">
+
+<div class="widthlDetails" id="widthlDetails">
+<div class="details"><h5>Pending</h5>
+<p>Total Amount: <span id="pendingDetails" >No data found </span> 
+</p> 
+</div>
+</div>
+
+<div class="widthlDetails" id="pendingWidth">
+<div class="details"><h5>Complete</h5>
+<p>Total Amount: <span id="completeDetails" >No data found </span> 
+</p> 
+</div>
+</div>
+
+
+</div>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+<script> const widthlDetailsBtn =document.getElementById('widthlDetailsBtn');
+const pendingBtn =document.getElementById('pendingBtn');
+const widthlDetails =document.getElementById('widthlDetails');
+const pendingWidth =document.getElementById('pendingWidth');
+
+const allDetails =document.getElementById('allDetails');
+
+const allDetailsBtn =document.getElementById('allDetailsBtn');
+
+widthlDetailsBtn.addEventListener('click',function(){
+    pendingWidth.style.display="none";
+    widthlDetails.style.display="block";
+allDetails.style.display="none";
+
+})
+pendingBtn.addEventListener('click', function(){
+    pendingWidth.style.display="block";
+    widthlDetails.style.display="none";
+allDetails.style.display="none";
+
+})
+
+allDetailsBtn.addEventListener('click',function(){
+    pendingWidth.style.display="block";
+    widthlDetails.style.display="block";
+})
+
+const withdrawAmt = localStorage.getItem('withdrawAmt');
+
+document.getElementById('pendingDetails').textContent = withdrawAmt;
+
+   </script>
+
+</body>
+</html>
+
+
+
+

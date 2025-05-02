@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+   
+<div id="available-balance"></div>
+<div id="deducted-amount"></div>
+
+<script>
+  const balance = localStorage.getItem('balance') || 10000;
+  const deductedAmount = localStorage.getItem('deductedAmount') || 0;
+  document.getElementById('available-balance').innerText = `Available Balance: ${balance}`;
+  document.getElementById('deducted-amount').innerText = `Deducted Amount: ${deductedAmount}`;
+</script>
+
+</body>
+</html>
